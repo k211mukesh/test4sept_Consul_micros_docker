@@ -23,6 +23,7 @@ namespace CustomerService
             builder.Services.AddScoped<ICustomerRepo, CustomerRepo>();
 
             builder.Services.AddDbContext<CustDbContext>(op => op.UseSqlServer(builder.Configuration.GetConnectionString("MyConnectionString")));
+            builder.Services.AddConsulConfig(builder.Configuration);
 
             var app = builder.Build();
 
@@ -35,7 +36,7 @@ namespace CustomerService
 
             app.UseAuthorization();
 
-            //app.UseConsul(builder.Configuration);
+            app.UseConsul(builder.Configuration);
             app.MapControllers();
 
             app.Run();

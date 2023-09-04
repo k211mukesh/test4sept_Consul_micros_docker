@@ -11,7 +11,7 @@ namespace Microsoft.Extensions.DependencyInjection
                (p => new ConsulClient(consulConfig =>
                {
 
-                   consulConfig.Address = new Uri("http://localhost:5049");
+                   consulConfig.Address = new Uri("http://localhost:8500");
 
                }));
             return services;
@@ -30,7 +30,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 ID = "customer",
                 Name = "Customer",
                 Address = "localhost",
-                Port = 5002
+                Port = 5049
             };
             logger.LogInformation("Registering with Consul");
             consulClient.Agent.ServiceDeregister(registration.ID).ConfigureAwait(true);
